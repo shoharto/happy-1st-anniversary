@@ -13,6 +13,8 @@
       font-family: 'Arial', sans-serif;
       color: white;
       text-align: center;
+      padding: 20px;
+      box-sizing: border-box;
     }
 
     .heart {
@@ -35,27 +37,34 @@
       -webkit-text-fill-color: transparent;
       font-weight: bold;
       position: absolute;
-      top: 40%;
-      width: 100%;
-      transform: translateY(-50%);
+      top: 15%;
+      width: 90%;
+      left: 50%;
+      transform: translateX(-50%);
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      padding: 0 20px;
     }
 
     #sayangMessage {
       position: absolute;
-      top: 50%;
-      width: 100%;
+      top: 35%;
+      width: 90%;
+      left: 50%;
+      transform: translateX(-50%);
       font-size: 1.8em;
       color: #ff9999;
+      padding: 0 20px;
     }
 
     #quote {
       position: absolute;
-      bottom: 10%;
+      top: 45%;
       left: 50%;
       transform: translateX(-50%);
       font-size: 1.5em;
-      max-width: 80%;
+      width: 80%;
+      max-width: 800px;
+      padding: 0 20px;
       color: #ffcccb;
       font-style: italic;
       transition: all 0.3s ease;
@@ -68,9 +77,15 @@
 
     .memory-container {
       position: absolute;
-      top: 65%;
-      width: 100%;
-      text-align: center;
+      top: 75%;
+      width: 90%;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 20px;
+      padding: 0 20px;
     }
 
     .memory-text {
@@ -150,6 +165,281 @@
       0%, 100% { opacity: 1; }
       50% { opacity: 0; }
     }
+
+    .memory-popup {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 1000;
+    }
+
+    .popup-content {
+        position: relative;
+        background: linear-gradient(45deg, #ff69b4, #ff1493);
+        margin: 15% auto;
+        padding: 20px;
+        width: 70%;
+        max-width: 500px;
+        border-radius: 15px;
+        color: white;
+        text-align: center;
+        animation: popupFadeIn 0.5s;
+    }
+
+    .close-popup {
+        position: absolute;
+        right: 15px;
+        top: 10px;
+        font-size: 28px;
+        cursor: pointer;
+    }
+
+    @keyframes popupFadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .popup-content[data-memory="firstDate"] {
+        background: linear-gradient(45deg, #ff69b4, #ff1493);
+    }
+
+    .popup-content[data-memory="firstKiss"] {
+        background: linear-gradient(45deg, #FF8C00, #FF4500);
+    }
+
+    .popup-content[data-memory="weddingDay"] {
+        background: linear-gradient(45deg, #4CAF50, #45a049);
+    }
+
+    /* Base responsive styles */
+    @media (max-width: 768px) {
+        body {
+            padding: 15px;
+        }
+
+        #message {
+            width: 85%;
+            padding: 0 15px;
+        }
+
+        #sayangMessage {
+            width: 85%;
+            padding: 0 15px;
+        }
+
+        #quote {
+            width: 85%;
+            padding: 0 15px;
+        }
+
+        .memory-container {
+            width: 85%;
+            padding: 0 15px;
+        }
+
+        .memory-text {
+            padding: 12px 20px;
+            margin: 8px;
+        }
+    }
+
+    /* Small mobile devices */
+    @media (max-width: 480px) {
+        body {
+            padding: 10px;
+        }
+
+        #message {
+            width: 90%;
+            padding: 0 10px;
+        }
+
+        #sayangMessage {
+            width: 90%;
+            padding: 0 10px;
+        }
+
+        #quote {
+            width: 90%;
+            padding: 0 10px;
+        }
+
+        .memory-container {
+            width: 90%;
+            padding: 0 10px;
+        }
+
+        .memory-text {
+            padding: 10px 15px;
+            margin: 5px;
+            width: 80%;
+        }
+
+        .popup-content {
+            margin: 40% auto;
+            padding: 10px;
+        }
+
+        .close-popup {
+            font-size: 24px;
+        }
+    }
+
+    /* Landscape mode */
+    @media (max-height: 500px) and (orientation: landscape) {
+        #message {
+            top: 20%;
+            font-size: 1.5em;
+        }
+
+        #sayangMessage {
+            top: 35%;
+            font-size: 1.2em;
+        }
+
+        #quote {
+            top: 55%;
+            font-size: 1em;
+        }
+
+        .memory-container {
+            top: 80%;
+            flex-direction: row;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .memory-text {
+            width: auto;
+            min-width: 150px;
+            font-size: 0.9em;
+        }
+    }
+
+    /* High-resolution devices */
+    @media (min-width: 1200px) and (min-height: 800px) {
+        #message {
+            font-size: 3em;
+            top: 25%;
+        }
+
+        #sayangMessage {
+            font-size: 2em;
+            top: 35%;
+        }
+
+        #quote {
+            font-size: 1.8em;
+            top: 50%;
+        }
+
+        .memory-container {
+            top: 75%;
+        }
+
+        .memory-text {
+            font-size: 1.2em;
+            padding: 20px;
+        }
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 768px) {
+        #message {
+            font-size: 2em;
+            top: 10%;
+        }
+
+        #sayangMessage {
+            font-size: 1.5em;
+            top: 30%;
+        }
+    }
+
+    /* Small mobile devices */
+    @media (max-width: 480px) {
+        #message {
+            font-size: 1.8em;
+            top: 8%;
+        }
+
+        #sayangMessage {
+            font-size: 1.3em;
+            top: 25%;
+            line-height: 1.4;
+        }
+    }
+
+    /* Extra small devices */
+    @media (max-width: 360px) {
+        #message {
+            font-size: 1.5em;
+            top: 5%;
+        }
+
+        #sayangMessage {
+            font-size: 1.2em;
+            top: 20%;
+        }
+    }
+
+    .signature {
+        position: fixed;
+        bottom: 20px;
+        width: 100%;
+        text-align: center;
+        font-family: 'Arial', sans-serif;
+        color: #ff69b4;
+        opacity: 0.8;
+        transition: all 0.3s ease;
+    }
+
+    .signature span {
+        font-size: 1.2em;
+        font-style: italic;
+        background: linear-gradient(45deg, #ff69b4, #ff1493);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        padding: 5px 15px;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+
+    .signature .designer-name {
+        color: white;
+        -webkit-text-fill-color: white;  /* Override the transparent text */
+        font-weight: bold;
+        text-shadow: 0 0 5px rgba(255, 105, 180, 0.5);
+    }
+
+    .signature span:hover {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+
+    .signature .designer-name:hover {
+        color: #ffffff;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    }
+
+    @media (max-width: 480px) {
+        .signature {
+            bottom: 10px;
+        }
+        .signature span {
+            font-size: 1em;
+        }
+    }
   </style>
 </head>
 <body>
@@ -157,9 +447,21 @@
   <div id="sayangMessage">365 days of loving you...</div>
   <div id="quote"></div>
   <div class="memory-container">
-    <div class="memory-text">Our First Date 🌹</div>
-    <div class="memory-text">First Kiss 💋</div>
-    <div class="memory-text">Wedding Day 💑</div>
+    <div class="memory-text" data-memory="firstDate">Our First Date 🌹</div>
+    <div class="memory-text" data-memory="firstKiss">First Kiss 💋</div>
+    <div class="memory-text" data-memory="weddingDay">Wedding Day 💑</div>
+  </div>
+
+  <!-- Add this for popups -->
+  <div class="memory-popup" id="memoryPopup">
+    <div class="popup-content">
+        <span class="close-popup">&times;</span>
+        <p id="popupText"></p>
+    </div>
+  </div>
+
+  <div class="signature">
+    <span>Designed with 💝 by <strong class="designer-name">Shoharto</strong></span>
   </div>
 
   <script>
@@ -229,12 +531,39 @@
     }
 
     // Memory click effect
+    const memoryMessages = {
+        firstDate: "Remember that magical evening? 🌹\nYour beautiful smile, the nervous excitement...\nThat cozy cafe where we talked for hours...\nTime stood still when I was with you! ✨",
+        firstKiss: "Ehehe... 🙈\n*blushes and hides face*\nSome memories are too precious to share...\n💝 💝 💝\nBut my heart still flutters thinking about it!",
+        weddingDay: "The most beautiful day at the masjid! 🕌\nWhen you walked in with such grace,\nmy heart skipped a beat...\nAllah has blessed me with the most beautiful wife! 💫"
+    };
+
     document.querySelectorAll('.memory-text').forEach(memory => {
-      memory.addEventListener('click', () => {
-        const x = memory.getBoundingClientRect().left;
-        const y = memory.getBoundingClientRect().top;
-        createHeartFirework(x, y);
-      });
+        memory.addEventListener('click', () => {
+            const x = memory.getBoundingClientRect().left;
+            const y = memory.getBoundingClientRect().top;
+            createHeartFirework(x, y);
+            
+            // Show popup
+            const memoryType = memory.getAttribute('data-memory');
+            const popup = document.getElementById('memoryPopup');
+            const popupContent = popup.querySelector('.popup-content');
+            const popupText = document.getElementById('popupText');
+            popupText.innerText = memoryMessages[memoryType];
+            popupContent.setAttribute('data-memory', memoryType);
+            popup.style.display = 'block';
+        });
+    });
+
+    // Close popup when clicking the close button or outside
+    document.querySelector('.close-popup').addEventListener('click', () => {
+        document.getElementById('memoryPopup').style.display = 'none';
+    });
+
+    window.addEventListener('click', (e) => {
+        const popup = document.getElementById('memoryPopup');
+        if (e.target === popup) {
+            popup.style.display = 'none';
+        }
     });
 
     // Update the quote display function
